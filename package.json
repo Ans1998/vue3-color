@@ -1,5 +1,5 @@
 {
-  "name": "@lk77/vue3-color",
+  "name": "@ans1998/vue3-color",
   "version": "3.0.6",
   "description": "Color of Vue 3 Components",
   "keywords": [
@@ -20,10 +20,10 @@
     "lint": "vue-cli-service lint",
     "patch": "npm version patch && npm run build && npm publish && git push --follow-tags"
   },
-  "homepage": "https://lk77.github.io/vue3-color/",
+  "homepage": "https:/Ans1998.github.io/vue3-color/",
   "repository": {
     "type": "git",
-    "url": "https://github.com/lk77/vue3-color"
+    "url": "https://github.com/Ans1998/vue3-color"
   },
   "devDependencies": {
     "@babel/core": "^7.12.16",
