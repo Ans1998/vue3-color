@@ -1,16 +1,13 @@
 # vue3-color
 
 
-
-[![npm](https://img.shields.io/npm/v/@lk77/vue3-color.svg)](https://www.npmjs.com/package/@lk77/vue3-color)
-
 Color Pickers for Sketch, Photoshop, Chrome & more with Vue 3.
 
 This package bring Vue 3 support to original package : [vue-color](https://www.npmjs.com/package/vue-color)
 
-## [Live demo](https://lk77.github.io/vue3-color/)
+## [Live demo](https://Ans1998.github.io/vue3-color/)
 
-![intro](./src/assets/intro.png)
+![intro](./src/assets/xP9JaBaPBJ.gif)
 
 ## Installation
 
@@ -59,6 +56,18 @@ changSketchButton (item) {
     console.log('取消')
   }
 }
+```
+
+### ts
+```
+shims-vue.d.ts
+/* eslint-disable */
+declare module '*.vue' {
+  import type, { DefineComponent } from 'vue'
+  const component: DefineComponent<{}, {}, any>
+  export default component
+}
+declare module '@ans1998/vue3-color'
 ```
 
 ## 说明

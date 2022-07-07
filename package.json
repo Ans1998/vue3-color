@@ -13,12 +13,11 @@
   "jsdelivr": "dist/vue3-color.umd.min.js",
   "scripts": {
     "dev": "npm run serve",
-    "prod": "npm run build && npm run gh:build",
+    "prod": "npm run build",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build --target lib --name vue3-color src/build.js",
     "gh:build": "vue-cli-service build --dest='dist/vue3-color'",
-    "lint": "vue-cli-service lint",
-    "patch": "npm version patch && npm run build && npm publish && git push --follow-tags"
+    "lint": "vue-cli-service lint"
   },
   "homepage": "https:/Ans1998.github.io/vue3-color/",
   "repository": {
