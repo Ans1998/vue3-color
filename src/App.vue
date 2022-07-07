@@ -24,8 +24,9 @@
     <div class="demo-container">
       <div class="demo-list">
         <div class="demo-item">
-          <sketch-picker v-model="colors"></sketch-picker>
           <h2>Sketch</h2>
+          <div style="width: 40px; height: 40px; cursor: pointer" :style="{backgroundColor: sketchBgColor}" @click="changSketch"></div>
+          <sketch-picker v-model="colors" :show="showSketch" @changButton="changSketchButton"></sketch-picker>
         </div>
         <div class="demo-item">
           <photoshop-picker v-model="colors" @ok="onOk" @cancel="onCancel"></photoshop-picker>
@@ -70,7 +71,6 @@
 <script>
 // we use both import methods
 import VueColor, { Material, Compact, Grayscale, Swatches, Slider, Sketch, Chrome } from './build.js'
-
 const defaultProps = {
   hex: '#194d33e6',
   hsl: {
@@ -108,6 +108,8 @@ export default {
   },
   data () {
     return {
+      showSketch: true,
+      sketchBgColor: '#222',
       colors: defaultProps
     }
   },
@@ -117,6 +119,20 @@ export default {
     }
   },
   methods: {
+    changSketchButton (item) {
+      this.showSketch = false
+      console.log(item)
+      if (item.isOk) {
+        console.log('确定')
+        this.sketchBgColor = item.activeColor
+      } else {
+        console.log('取消')
+      }
+    },
+    changSketch () {
+      console.log('...切换...', this.showSketch)
+      this.showSketch = !this.showSketch
+    },
     onOk () {
       console.log('ok')
     },

@@ -1,5 +1,5 @@
 <template>
-  <div role="application" aria-label="Sketch color picker" :class="['vc-sketch', disableAlpha ? 'vc-sketch__disable-alpha' : '']">
+  <div v-if="showView" role="application" aria-label="Sketch color picker" :class="['vc-sketch', disableAlpha ? 'vc-sketch__disable-alpha' : '']">
     <div class="vc-sketch-saturation-wrap">
       <saturation v-model="colors" @change="childChange"></saturation>
     </div>
@@ -55,6 +55,11 @@
         </div>
       </template>
     </div>
+    <!-- 按钮 -->
+    <div class="vc-botton-container">
+      <div class="vc-botton-left" @click="handleCancel">取消</div>
+      <div class="vc-botton-right" @click="handleConfirm">确定</div>
+    </div>
   </div>
 </template>
 
@@ -72,7 +77,6 @@ const presetColors = [
   '#B8E986', '#000000', '#4A4A4A', '#9B9B9B', '#FFFFFF',
   'rgba(0,0,0,0)'
 ]
-
 export default {
   name: 'Sketch',
   mixins: [colorMixin],
@@ -84,6 +88,12 @@ export default {
     checkboard
   },
   props: {
+    show: {
+      type: Boolean,
+      default () {
+        return true
+      }
+    },
     presetColors: {
       type: Array,
       default () {
@@ -97,6 +107,19 @@ export default {
     disableFields: {
       type: Boolean,
       default: false
+    },
+    changColor: {
+      type: Function
+    }
+  },
+  watch: {
+    show (newVal, oldVal) {
+      this.showView = newVal
+    }
+  },
+  data () {
+    return {
+      showView: this.show
     }
   },
   computed: {
@@ -115,6 +138,20 @@ export default {
     }
   },
   methods: {
+    handleCancel () {
+      const item = {
+        isOk: false
+      }
+      this.$emit('changButton', item)
+    },
+    handleConfirm () {
+      const item = {
+        isOk: true,
+        activeColor: this.activeColor,
+        hex: this.hex
+      }
+      this.$emit('changButton', item)
+    },
     handlePreset (c) {
       this.colorChange({
         hex: c,
@@ -148,6 +185,32 @@ export default {
 </script>
 
 <style lang="css">
+  /*按钮样式*/
+  .vc-botton-container {
+    display: flex;
+    justify-content: end;
+    padding-bottom: 10px;
+    font-size: 12px;
+  }
+  .vc-botton-right {
+    cursor: pointer;
+    margin-left: 10px;
+    padding: 5px 5px;
+    border:1px solid #dcdfe6;
+    border-radius: 5px;
+    color: #606266;
+    /*background-color: red;*/
+  }
+  .vc-botton-right:hover {
+    color: #409eff;
+    border:1px solid #409eff;
+  }
+  .vc-botton-left {
+    cursor: pointer;
+    padding: 5px 5px;
+    color: #409eff;
+    /*background-color: blue;*/
+  }
 .vc-sketch {
   position: relative;
   width: 200px;

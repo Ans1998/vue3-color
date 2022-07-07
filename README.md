@@ -137,6 +137,32 @@ In some cases you can give the component a predefined set of colors with the pro
 ></compact-picker>
 ```
 
+```
+<div>
+  <h2>Sketch</h2>
+  <div style="width: 40px; height: 40px; cursor: pointer" :style="{backgroundColor: sketchBgColor}" @click="changSketch"></div>
+  <sketch-picker v-model="colors" :show="showSketch" @changButton="changSketchButton"></sketch-picker>
+</div>
+
+let item = {
+    isOk: true,
+    activeColor: this.activeColor,
+    hex: this.hex
+}
+
+changSketchButton (item) {
+  this.showSketch = false
+  console.log(item)
+  if (item.isOk) {
+    console.log('确定')
+    this.sketchBgColor = item.activeColor
+  } else {
+    console.log('取消')
+  }
+}
+
+```
+
 ## License
 
 @lk77/vue3-color is licensed under [The MIT License](LICENSE).
